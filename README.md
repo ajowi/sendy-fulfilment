@@ -14,7 +14,7 @@ This package makes it easy to integrate Sendy Fulfilment Service API [Sendy Fulf
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-	- [Setting up the Sendy Fulfillment service](#setting-up-the-sendy-fulfillment-service)
+	- [Setting up the Sendy Fulfilment service](#setting-up-the-sendy-fulfilment-service)
 - [Usage](#usage)
 	- [Available Operations](#available-operations)
 - [Changelog](#changelog)
@@ -26,7 +26,7 @@ This package makes it easy to integrate Sendy Fulfilment Service API [Sendy Fulf
 
 ## Requirements
 
-- [Sign up](https://www.sendyit.com/api) for a Sendy Fulfillment accoun
+- [Sign up](https://app.sendyit.com) for a Sendy Fulfillment account
 - Generate your API token in settings
 
 ## Installation
@@ -58,7 +58,7 @@ Add your Sendy API Token, API version and endpoints to your `config/services.php
 
 ## Usage
 
-Example to request for an order's price quotations and returns available pricing tiers given pickup and delivery coordinates
+Request for an order's price quotations and return available pricing tiers given pickup and delivery coordinates
 ``` php
     use Ajowi\SendyFulfilment\PriceRequest;
 
