@@ -54,7 +54,7 @@ class SendyRestRequest
      * @param string $apiKey
      *
      */
-    public function __construct($endPointUrl = null, $apiKey = null)
+    public function __construct($endPointUrl = '', $apiKey = '')
     {
         $this->httpClient = new SendyClient();
         $this->httpRequest = HttpRequest::createFromGlobals();
@@ -64,7 +64,7 @@ class SendyRestRequest
         }
         else{
             $this->endPointUrl = $endPointUrl;
-            $this->apiKey = $apiKey ?? config('services.sendy.token');
+            $this->apiKey = $apiKey;
         }
 
     }
