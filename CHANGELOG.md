@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to `bongatech-sms` will be documented in this file
+All notable changes to `sendy-fulfilment`.
 
-## 1.0.0 - 2022-03-11
+## v1.0 - 2022-12-17
 
 - initial release

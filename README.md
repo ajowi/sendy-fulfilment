@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/travis/ajowi/sendy-fulfilment/master.svg?style=flat-square)](https://travis-ci.org/ajowi/sendy-fulfilment)
 [![Total Downloads](https://img.shields.io/packagist/dt/ajowi/sendy-fulfilment.svg?style=flat-square)](https://packagist.org/packages/ajowi/sendy-fulfilment)
 
-This package makes it easy to integrate Sendy Fulfillment Service API [Sendy Fulfillment](https://api.sendyit.com/v2/documentation) ninto your php applications.
+This package makes it easy to integrate Sendy Fulfillment Service API [Sendy Fulfillment](https://api.sendyit.com/v2/documentation) into your php applications.
 
 
 ## Contents
