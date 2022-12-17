@@ -28,5 +28,5 @@ jobs:
       - name: Install dependencies
         run: composer update --prefer-source --no-interaction --no-progress
 
-#      - name: Execute tests
-#        run: vendor/bin/phpunit --verbose
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose

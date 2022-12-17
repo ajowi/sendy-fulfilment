@@ -3,8 +3,6 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ajowi/sendy-fulfilment.svg?style=flat-square)](https://packagist.org/packages/ajowi/sendy-fulfilment)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/ajowi/sendy-fulfilment/master.svg?style=flat-square)](https://travis-ci.org/ajowi/sendy-fulfilment)
-[![Quality Score](https://img.shields.io/scrutinizer/g/ajowi/sendy-fulfilment.svg?style=flat-square)](https://scrutinizer-ci.com/g/ajowi/sendy-fulfilment)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/ajowi/sendy-fulfilment/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/ajowi/sendy-fulfilment/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/ajowi/sendy-fulfilment.svg?style=flat-square)](https://packagist.org/packages/ajowi/sendy-fulfilment)
 
 This package makes it easy to integrate Sendy Fulfilment Service API [Sendy Fulfillment](https://api.sendyit.com/v2/documentation) ninto your php applications.
