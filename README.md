@@ -1,18 +1,18 @@
-#  Sendy Fulfilment Service for Laravel/PHP applications
+#  Sendy Fulfillment Service package for Laravel/PHP applications
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ajowi/sendy-fulfilment.svg?style=flat-square)](https://packagist.org/packages/ajowi/sendy-fulfilment)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/ajowi/sendy-fulfilment/master.svg?style=flat-square)](https://travis-ci.org/ajowi/sendy-fulfilment)
 [![Total Downloads](https://img.shields.io/packagist/dt/ajowi/sendy-fulfilment.svg?style=flat-square)](https://packagist.org/packages/ajowi/sendy-fulfilment)
 
-This package makes it easy to integrate Sendy Fulfilment Service API [Sendy Fulfillment](https://api.sendyit.com/v2/documentation) ninto your php applications.
+This package makes it easy to integrate Sendy Fulfillment Service API [Sendy Fulfillment](https://api.sendyit.com/v2/documentation) ninto your php applications.
 
 
 ## Contents
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-	- [Setting up the Sendy Fulfilment service](#setting-up-the-sendy-fulfilment-service)
+	- [Setting up the Sendy Fulfillment service](#setting-up-the-sendy-fulfillment-service)
 - [Usage](#usage)
 	- [Available Operations](#available-operations)
 - [Changelog](#changelog)
@@ -37,7 +37,7 @@ composer require ajowi/sendy-fulfilment
 
 This package will register itself automatically with Laravel 5.5 and up through Package auto-discovery.
 
-### Setting up the Sendy Fulfilment service
+### Setting up the Sendy Fulfillment service
 
 Add your Sendy API Token, API version and endpoints to your `config/services.php`:
 
@@ -58,7 +58,7 @@ Add your Sendy API Token, API version and endpoints to your `config/services.php
 
 Request for an order's price quotations and return available pricing tiers given pickup and delivery coordinates
 ``` php
-    use Ajowi\SendyFulfilment\PriceRequest;
+    use Ajowi\SendyFulfillment\PriceRequest;
 
     $data = new array(
         'ecommerce_order' => 'ODR-0000',
