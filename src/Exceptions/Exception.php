@@ -1,6 +1,6 @@
 <?php
 
-namespace Ajowi\SendyFulfilment\Exception;
+namespace Ajowi\SendyFulfilment\Exceptions;
 
 use Psr\Http\Message\RequestInterface;
 use Throwable;
