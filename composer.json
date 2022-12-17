@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": ">=7.4",
+        "symfony/http-foundation": "^5.0",
         "php-http/client-common": "^2.0",
         "php-http/guzzle7-adapter": "0.1.1",
         "php-http/message": "^1.5",
