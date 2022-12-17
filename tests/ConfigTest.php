@@ -3,8 +3,9 @@ namespace Ajowi\SendyFulfilment\Tests;
 use Ajowi\SendyFulfilment;
 use Ajowi\SendyFulfilment\SendyRestRequest;
 use Ajowi\SendyFulfilment\Exceptions\RequestException;
+use PHPUnit\Framework\TestCase;
 
-class ConfigTest extends PHPUnit\Framework\TestCase
+class ConfigTest extends TestCase
 {
     // public function testInvalidApiTokenProvided(): void
     // {
