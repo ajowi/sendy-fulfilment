@@ -93,10 +93,21 @@ class SendyRestRequest
         return 'POST';
     }
 
+    /**
+     * Get API Endpoint
+     */
     protected function getEndpoint()
     {
         $base = $this->getTestMode() ? self::TEST_ENDPOINT : self::LIVE_ENDPOINT;
         return $base . '/' . self::API_VERSION;
+    }
+
+    /**
+     * Checks if API Endpoint config is set
+     */
+    public function hasEndpoint()
+    {
+        return !empty($this->getEndpoint()) ?? false;
     }
 
      /**
@@ -156,6 +167,9 @@ class SendyRestRequest
         return $this->response = new RestResponse($this, $data, $statusCode);
     }
 
+    /**
+     * Get API authentication token
+     */
     private function getApiKey()
     {
         $apiKey = self::API_KEY;
@@ -166,6 +180,17 @@ class SendyRestRequest
         return $apiKey;
     }
 
+    /**
+     * Checks if API authentication token config is set
+     */
+    public function hasApiKey()
+    {
+        return !empty($this->getApiKey()) ?? false;
+    }
+
+    /**
+     * Get request payload
+     */
     public function getData()
     {
         return $this->data;
@@ -196,5 +221,7 @@ class SendyRestRequest
 
         return $this->response;
     }
+
+    public function
 
 }
