@@ -173,10 +173,9 @@ class SendyRestRequest
     private function getApiKey()
     {
         $apiKey = self::API_KEY;
-        if (!$apiKey) {
-            throw new RequestException('No credentials/authentication token provided.');
-        }
-
+        // if (!$apiKey) {
+        //     throw new RequestException('No credentials/authentication token provided.');
+        // }
         return $apiKey;
     }
 
