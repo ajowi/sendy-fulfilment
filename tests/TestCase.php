@@ -6,12 +6,12 @@ use Ajowi\SendyFulfilment\Exceptions\RequestException;
 
 class TestCase extends PHPUnit\Framework\TestCase
 {
-    public function testInvalidApiTokenProvided(): void
-    {
-        $restRequest = new SendyRestRequest();
-        $this->expectException(RequestException::class);
-        $restRequest->getApiKey();
-    }
+    // public function testInvalidApiTokenProvided(): void
+    // {
+    //     $restRequest = new SendyRestRequest();
+    //     $this->expectException(RequestException::class);
+    //     $restRequest->getApiKey();
+    // }
 
     public function testNotInTestMode(): void
     {
