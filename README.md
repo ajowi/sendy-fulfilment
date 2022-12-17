@@ -35,28 +35,23 @@ You can install the package via composer:
 composer require ajowi/sendy-fulfilment
 ```
 
-This package will register itself automatically with Laravel 5.5 and up through Package auto-discovery.
-
 ### Setting up the Sendy Fulfillment service
 
-Add your Sendy API Token, API version and endpoints to your `config/services.php`:
+On Laravel add your Sendy API Token and Endpoint URL to your `config/services.php`:
 
 ```php
 // config/services.php
 ...
 'sendy' => [
     'token' => env('SENDY_TOKEN'),
-    'api_version' => env('SENDY_API_VERSION'),
-    'live_endpoint' => env('SENDY_LIVE_ENDPOINT'),
-    'test_endpoint' => env('SENDY_TEST_ENDPOINT'),
-    'test_mode' => env('SENDY_TEST_MODE'),
+    'endpoint_url' => env('SENDY_ENDPOINT_URL'),
 ],
 ...
 ```
 
 ## Usage
 
-Request for an order's price quotations and return available pricing tiers given pickup and delivery coordinates
+Example request for an order's price quotations that return available pricing tiers given pickup and delivery coordinates
 ``` php
     use Ajowi\SendyFulfillment\PriceRequest;
 
@@ -85,6 +80,15 @@ Request for an order's price quotations and return available pricing tiers given
         ]
     );
     
+    /**
+     * -----------
+     * IMPORTANT
+     * -----------
+     * If you are not using Laravel, pass the API token/key and Endpoint URL to the constructor like so
+     * 
+     *  $priceRequest = new PriceRequest('SENDY_API_TOKEN', 'ENDPOINT_URL');
+     * 
+     */
     $priceRequest = new PriceRequest();
     $priceRequest->initialize($data);
 

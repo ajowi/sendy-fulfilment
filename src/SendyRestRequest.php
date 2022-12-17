@@ -8,31 +8,17 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 class SendyRestRequest
 {
-    const API_VERSION = '';//'v2';//config('services.sendy.api_version');
-
     /**
-     * Sandbox Endpoint URL
+     * API Endpoint URL
      *
      * @var string URL
      */
-    const TEST_ENDPOINT = '';//'https://api.sendyit.com'; //config('services.sendy.test_endpoint');
-
-    /**
-     * Live Endpoint URL
-     *
-     * @var string URL
-     */
-    const LIVE_ENDPOINT = '';//'https://api.sendyit.com'; //config('services.sendy.live_endpoint');
+    protected $endPointUrl;
 
     /**
      * @var string $apiKey The API key that's to be used to make requests.
      */
-    const API_KEY = ''; //config('services.sendy.token');
-
-    /**
-     * @var string $apiKey The API key that's to be used to make requests.
-     */
-    const TEST_MODE = false; //config('services.sendy.token');
+    protected $apiKey;
 
      /**
      * The request client.
@@ -64,12 +50,23 @@ class SendyRestRequest
 
     /**
      * Create a new Request
+     * @param string $endPointUrl
+     * @param string $apiKey
      *
      */
-    public function __construct()
+    public function __construct($endPointUrl = null, $apiKey = null)
     {
         $this->httpClient = new SendyClient();
         $this->httpRequest = HttpRequest::createFromGlobals();
+        if(function_exists('config')){
+            $this->endPointUrl = config('services.sendy.endpoint_url');
+            $this->apiKey = config('services.sendy.token');
+        }
+        else{
+            $this->endPointUrl = $endPointUrl;
+            $this->apiKey = $apiKey ?? config('services.sendy.token');
+        }
+
     }
 
     /**
@@ -98,50 +95,43 @@ class SendyRestRequest
      */
     protected function getEndpoint()
     {
-        $base = $this->getTestMode() ? self::TEST_ENDPOINT : self::LIVE_ENDPOINT;
-        return !empty($base) ? $base . '/' . self::API_VERSION : $base;
+        return $this->endPointUrl;
     }
 
     /**
-     * Checks if API Endpoint config is set
+     * Checks if API Endpoint URL config is set
      */
     public function hasEndpoint()
     {
         return !empty($this->getEndpoint()) ?? false;
     }
 
-     /**
-     * Gets the test mode of the request from the gateway.
-     *
-     * @return boolean
-     */
-    public function getTestMode()
-    {
-        //return config('services.sendy.test_mode') ?: false;
-        return self::TEST_MODE;
-    }
-
     public function sendData($data)
     {
         $body = $this->toJSON($data);
         //Log::info($body);
-        try {
-            $httpResponse = $this->httpClient->request(
-                $this->getHttpMethod(),
-                $this->getEndpoint(),
-                array(
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $this->getApiKey(),
-                    'Content-type' => 'application/json',
-                ),
-                $body
-            );
-            // Empty response body should be parsed also as and empty array
-            $body = (string)$httpResponse->getBody()->getContents();
-            $jsonToArrayResponse = !empty($body) ? json_decode($body, true) : array();
-            return $this->response = $this->createResponse($jsonToArrayResponse, $httpResponse->getStatusCode());
-        } catch (\Exception $e) {
-            throw new RequestException($e->getMessage(),$e->getCode());
+        if($this->hasEndpoint() && $this->hasApiKey()){
+            try {
+                $httpResponse = $this->httpClient->request(
+                    $this->getHttpMethod(),
+                    $this->getEndpoint(),
+                    array(
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Bearer ' . $this->getApiKey(),
+                        'Content-type' => 'application/json',
+                    ),
+                    $body
+                );
+                // Empty response body should be parsed also as and empty array
+                $body = (string)$httpResponse->getBody()->getContents();
+                $jsonToArrayResponse = !empty($body) ? json_decode($body, true) : array();
+                return $this->response = $this->createResponse($jsonToArrayResponse, $httpResponse->getStatusCode());
+            } catch (\Exception $e) {
+                throw new RequestException($e->getMessage(),$e->getCode());
+            }
+        }
+        else{
+            throw new RequestException('No authentication token (API Key) or Endpoint URL provided.');
         }
     }
 
@@ -172,11 +162,11 @@ class SendyRestRequest
      */
     private function getApiKey()
     {
-        $apiKey = self::API_KEY;
+        //$apiKey = $this->apiKey;
         // if (!$apiKey) {
         //     throw new RequestException('No credentials/authentication token provided.');
         // }
-        return $apiKey;
+        return $this->apiKey;
     }
 
     /**

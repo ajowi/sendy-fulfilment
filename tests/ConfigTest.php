@@ -13,12 +13,6 @@ class ConfigTest extends TestCase
         $this->assertEquals($restRequest->hasApiKey(), false);
     }
 
-    public function testApiInTestMode(): void
-    {
-        $restRequest = new SendyRestRequest();
-        $this->assertEquals($restRequest->getTestMode(), false);
-    }
-
     public function testApiEndpointIsSet(): void
     {
         $restRequest = new SendyRestRequest();
