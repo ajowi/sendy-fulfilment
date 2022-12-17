@@ -222,6 +222,4 @@ class SendyRestRequest
         return $this->response;
     }
 
-    public function
-
 }
