@@ -4,7 +4,7 @@ use Ajowi\SendyFulfilment;
 use Ajowi\SendyFulfilment\SendyRestRequest;
 use Ajowi\SendyFulfilment\Exceptions\RequestException;
 
-class TestCase extends PHPUnit\Framework\TestCase
+class ConfigTest extends PHPUnit\Framework\TestCase
 {
     // public function testInvalidApiTokenProvided(): void
     // {
