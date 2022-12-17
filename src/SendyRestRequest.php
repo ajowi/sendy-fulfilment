@@ -99,7 +99,7 @@ class SendyRestRequest
     protected function getEndpoint()
     {
         $base = $this->getTestMode() ? self::TEST_ENDPOINT : self::LIVE_ENDPOINT;
-        return $base . '/' . self::API_VERSION;
+        return !empty($base) ? $base . '/' . self::API_VERSION : $base;
     }
 
     /**

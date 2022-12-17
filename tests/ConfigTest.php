@@ -10,18 +10,18 @@ class ConfigTest extends TestCase
     public function testValidApiTokenProvided(): void
     {
         $restRequest = new SendyRestRequest();
-        $this->assertEquals($restRequest->hasApiKey(), true);
+        $this->assertEquals($restRequest->hasApiKey(), false);
     }
 
     public function testApiInTestMode(): void
     {
         $restRequest = new SendyRestRequest();
-        $this->assertEquals($restRequest->getTestMode(), true);
+        $this->assertEquals($restRequest->getTestMode(), false);
     }
 
     public function testApiEndpointIsSet(): void
     {
         $restRequest = new SendyRestRequest();
-        $this->assertEquals($restRequest->hasEndpoint(), true);
+        $this->assertEquals($restRequest->hasEndpoint(), false);
     }
 }
