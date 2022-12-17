@@ -8,25 +8,31 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 class SendyRestRequest
 {
-    const API_VERSION = 'v2';//config('services.sendy.api_version');
+    const API_VERSION = '';//'v2';//config('services.sendy.api_version');
 
     /**
      * Sandbox Endpoint URL
      *
      * @var string URL
      */
-    const TEST_ENDPOINT = 'https://api.sendyit.com'; //config('services.sendy.test_endpoint');
+    const TEST_ENDPOINT = '';//'https://api.sendyit.com'; //config('services.sendy.test_endpoint');
 
     /**
      * Live Endpoint URL
      *
      * @var string URL
      */
-    const LIVE_ENDPOINT = 'https://api.sendyit.com'; //config('services.sendy.live_endpoint');
+    const LIVE_ENDPOINT = '';//'https://api.sendyit.com'; //config('services.sendy.live_endpoint');
+
     /**
      * @var string $apiKey The API key that's to be used to make requests.
      */
-    const API_KEY = 'token'; //config('services.sendy.token');
+    const API_KEY = ''; //config('services.sendy.token');
+
+    /**
+     * @var string $apiKey The API key that's to be used to make requests.
+     */
+    const TEST_MODE = false; //config('services.sendy.token');
 
      /**
      * The request client.
@@ -101,7 +107,7 @@ class SendyRestRequest
     public function getTestMode()
     {
         //return config('services.sendy.test_mode') ?: false;
-        return true;
+        return self::TEST_MODE;
     }
 
     public function sendData($data)
