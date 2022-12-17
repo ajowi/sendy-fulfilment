@@ -7,21 +7,21 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
-    public function testInvalidApiTokenProvided(): void
+    public function testValidApiTokenProvided(): void
     {
         $restRequest = new SendyRestRequest();
-        $this->assertEquals($restRequest->hasApiKey(), false);
+        $this->assertEquals($restRequest->hasApiKey(), true);
     }
 
-    public function testInTestApiMode(): void
+    public function testApiInTestMode(): void
     {
         $restRequest = new SendyRestRequest();
         $this->assertEquals($restRequest->getTestMode(), true);
     }
 
-    public function testEndpointNotSet(): void
+    public function testApiEndpointIsSet(): void
     {
         $restRequest = new SendyRestRequest();
-        $this->assertEquals($restRequest->hasEndpoint(), false);
+        $this->assertEquals($restRequest->hasEndpoint(), true);
     }
 }
