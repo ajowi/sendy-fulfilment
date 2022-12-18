@@ -28,7 +28,8 @@
     "autoload": {
         "psr-4": {
             "Ajowi\\SendyFulfilment\\": "src"
-        }
+        },
+        "classmap": ["src/"]
     },
     "autoload-dev": {
         "psr-4": {
