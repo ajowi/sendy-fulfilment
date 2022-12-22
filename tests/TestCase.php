@@ -28,12 +28,12 @@ class TestCase extends PHPUnitTestCase
         return $this->response;
     }
 
-    protected function mockRequest($method, $path, $params = array(),
-        $return = array(), $rcode = 200)
+    protected function mockRequest($method, $path, $params,
+        $return, $rcode = 200)
     {
         $this->client->expects($this->any())
              ->method('request')
-             ->with(strtolower($method), $path,
+             ->with($method, $path,
                 $this->anything(), $params)
              ->willReturn(
                 $this->createResponse($rcode)
