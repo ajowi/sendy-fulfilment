@@ -3,6 +3,9 @@
 namespace Ajowi\SendyFulfilment\Tests;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Ajowi\SendyFulfilment\SendyClient;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\StreamFactoryDiscovery;
 
 class TestCase extends PHPUnitTestCase
 {
@@ -32,8 +35,25 @@ class TestCase extends PHPUnitTestCase
              ->method('request')
              ->with(strtolower($method), $path,
                 $this->anything(), $params)
-             ->willReturn(array(json_encode($return), $rcode));
+             ->willReturn(
+                $this->createResponse($rcode)
+                    ->withBody($this->createStream(json_encode($return), $rcode))
+             );
 
+    }
+
+    protected function createResponse($rcode)
+    {
+        $responseFactory = Psr17FactoryDiscovery::findResponseFactory();
+        $response = $responseFactory->createResponse($rcode);
+        return $response;
+    }
+
+    protected function createStream($data)
+    {
+        $streamFactory = StreamFactoryDiscovery::find();;
+        $stream = $streamFactory->createStream($data);
+        return $stream;
     }
 
 }

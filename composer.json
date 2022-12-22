@@ -21,6 +21,7 @@
 
     },
     "require-dev": {
+        "php-http/discovery": "^1.2.1",
         "php-http/mock-client": "^1.0",
         "mockery/mockery": "^1.0",
         "phpunit/phpunit": "^9.0"
