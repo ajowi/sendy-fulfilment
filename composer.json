@@ -33,7 +33,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ajowi\\SendyFulfilment\\Test\\": "tests"
+            "Ajowi\\SendyFulfilment\\Tests\\": "tests"
         }
     },
     "scripts": {
