@@ -79,6 +79,13 @@ class SendyRestRequest
     }
 
     /**
+     * Set HttpClient
+     */
+    public function setHttpClient($client){
+        $this->httpClient = $client;
+    }
+
+    /**
      * Get HTTP Method.
      *
      * This is nearly always POST but can be over-ridden in sub classes.
