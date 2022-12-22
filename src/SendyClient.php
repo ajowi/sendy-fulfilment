@@ -47,7 +47,7 @@ class SendyClient
         string $method,
         $uri,
         array $headers = [],
-        $body = null,
+        $body,
         string $protocolVersion = '1.1'
     ): ResponseInterface
     {
