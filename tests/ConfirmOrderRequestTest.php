@@ -17,7 +17,7 @@ class ConfirmOrderRequestTest extends TestCase
         $defaultResponse = $this->getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status);
         $orderRequest = new ConfirmOrderRequest('https://api.sendyit.com/v2/orders', 'KEY');
         $orderRequest->setHttpClient($this->getClient());
-        //$orderRequest->initialize($order);
+        $orderRequest->initialize($order);
         $this->mockRequest('POST', $orderRequest->getEndpoint(), $order, $defaultResponse);
         $response = $orderRequest->send();
         $data = $response->getData();
@@ -35,7 +35,7 @@ class ConfirmOrderRequestTest extends TestCase
         $defaultResponse = $this->getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status);
         $orderRequest = new ConfirmOrderRequest('https://api.sendyit.com/v2/orders', 'KEY');
         $orderRequest->setHttpClient($this->getClient());
-        //$orderRequest->initialize($order);
+        $orderRequest->initialize($order);
         $this->mockRequest('POST', $orderRequest->getEndpoint(), $order, $defaultResponse);
         $response = $orderRequest->send();
         $data = $response->getData();
