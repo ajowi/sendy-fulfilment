@@ -115,7 +115,7 @@ class SendyRestRequest
 
     public function sendData($data)
     {
-        $body = $this->toJSON($data);
+        $body = $data; //$this->toJSON($data);
         //Log::info($body);
         if($this->hasEndpoint() && $this->hasApiKey()){
             try {
