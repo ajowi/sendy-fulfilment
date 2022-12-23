@@ -1,13 +1,13 @@
 <?php
 /**
- * Sendy REST Price Request
+ * Sendy Track Order
  */
 
 namespace Ajowi\SendyFulfilment;
 
 
 /**
- * Sendy REST Price Request
+ * Sendy Track Order Request
  *
  * ### Example
  *
@@ -48,8 +48,8 @@ class TrackOrderRequest extends SendyRestRequest
     /**
      * Get HTTP Method.
      *
-     * The HTTP method for price request requests must be GET.
-     * Using POST results in an error 500 from PesaPal.
+     * The HTTP method for order tracking request must be GET.
+     * Using POST results in an error 500 from Sendy.
      *
      * @return string
      */

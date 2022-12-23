@@ -1,6 +1,6 @@
 <?php
 /**
- * Sendy REST Price Request
+ * Sendy Cancel Order
  */
 
 namespace Ajowi\SendyFulfilment;
@@ -17,6 +17,7 @@ namespace Ajowi\SendyFulfilment;
  *   $data = new array(
  *               'cancel_reason_id' => 1,
  *               'reason_description' => 'Reason',
+ *               'orderNumber' => 'dshdfjdf'
  *   );
  *
  * . $priceRequest = new PriceRequest();
@@ -49,8 +50,8 @@ class CancelOrderRequest extends SendyRestRequest
     /**
      * Get HTTP Method.
      *
-     * The HTTP method for price request requests must be GET.
-     * Using POST results in an error 500 from PesaPal.
+     * The HTTP method for cancelling order requests must be POST.
+     * Using GET results in an error 500 from Sendy.
      *
      * @return string
      */
@@ -61,6 +62,6 @@ class CancelOrderRequest extends SendyRestRequest
 
     public function getEndpoint()
     {
-        return parent::getEndpoint() . '/orders/' . $this->data['orderNumber'] . '/cancel';
+        return parent::getEndpoint() . '/orders/' . $this->getData()['orderNumber'] . '/cancel';
     }
 }

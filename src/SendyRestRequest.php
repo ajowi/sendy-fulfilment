@@ -86,6 +86,13 @@ class SendyRestRequest
     }
 
     /**
+     * Get HttpClient
+     */
+    public function getHttpClient(){
+        return $this->httpClient;
+    }
+
+    /**
      * Get HTTP Method.
      *
      * This is nearly always POST but can be over-ridden in sub classes.
@@ -100,7 +107,7 @@ class SendyRestRequest
     /**
      * Get API Endpoint
      */
-    protected function getEndpoint()
+    public function getEndpoint()
     {
         return $this->endPointUrl;
     }
@@ -113,7 +120,7 @@ class SendyRestRequest
         return !empty($this->getEndpoint()) ?? false;
     }
 
-    public function sendData($data)
+    private function sendData($data)
     {
         $body = $data; //$this->toJSON($data);
         //Log::info($body);
@@ -143,23 +150,17 @@ class SendyRestRequest
     }
 
     /**
-     * Returns object JSON representation required by Sendy.
+     * Returns object JSON representation.
      * @param int $options http://php.net/manual/en/json.constants.php
      * @return string
      */
     public function toJSON($data, $options = 0)
     {
-        // Because of PHP Version 5.3, we cannot use JSON_UNESCAPED_SLASHES option
-        // Instead we would use the str_replace command for now.
-        // TODO: Replace this code with return json_encode($this->toArray(), $options | 64); once we support PHP >= 5.4
-        if (version_compare(phpversion(), '5.4.0', '>=') === true) {
-            return json_encode($data, $options | 64);
-        }
+        return json_encode($data, $options | 64);
 
-        return str_replace('\\/', '/', json_encode($data, $options));
     }
 
-    protected function createResponse($data, $statusCode)
+    private function createResponse($data, $statusCode)
     {
         return $this->response = new RestResponse($this, $data, $statusCode);
     }
@@ -169,10 +170,6 @@ class SendyRestRequest
      */
     private function getApiKey()
     {
-        //$apiKey = $this->apiKey;
-        // if (!$apiKey) {
-        //     throw new RequestException('No credentials/authentication token provided.');
-        // }
         return $this->apiKey;
     }
 

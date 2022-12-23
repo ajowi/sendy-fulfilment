@@ -67,11 +67,11 @@ class PriceRequest extends SendyRestRequest
         return $this->data;
     }
 
-    /**
+     /**
      * Get HTTP Method.
      *
-     * The HTTP method for price request requests must be GET.
-     * Using POST results in an error 500 from PesaPal.
+     * The HTTP method for price requests must be POST.
+     * Using GET results in an error 500 from Sendy.
      *
      * @return string
      */

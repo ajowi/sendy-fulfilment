@@ -10,11 +10,20 @@ use Http\Discovery\StreamFactoryDiscovery;
 class TestCase extends PHPUnitTestCase
 {
     protected $client;
-    protected $response;
+    protected $responseData;
+    protected $requestData;
+    protected $endpoint;
+    protected $apiKey;
+    protected $headers;
 
     protected function setUp() : void
     {
         $this->client = $this->createMock(SendyClient::class);
+        $this->endpoint = 'https://api.sendyit.com/';
+        $this->apiKey = 'KEY';
+        $this->responseData = array();
+        $this->requestData = array();
+        $this->headers = array();
     }
 
     protected function getClient()
@@ -23,9 +32,31 @@ class TestCase extends PHPUnitTestCase
 
     }
 
-    protected function getDefaultResponse()
+    protected function getApiKey()
     {
-        return $this->response;
+        return $this->apiKey;
+
+    }
+
+    protected function getEndpoint()
+    {
+        return $this->endpoint;
+
+    }
+
+    protected function getDefaultResponseData()
+    {
+        return $this->responseData;
+    }
+
+    protected function getDefaultRequestData()
+    {
+        return $this->requestData;
+    }
+
+    protected function getDefaultRequestHeaders()
+    {
+        return $this->headers;
     }
 
     protected function mockRequest($method, $path, $params,

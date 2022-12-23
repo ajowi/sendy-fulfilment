@@ -1,13 +1,13 @@
 <?php
 /**
- * Sendy REST Price Request
+ * Sendy Confirm Order
  */
 
 namespace Ajowi\SendyFulfilment;
 
 
 /**
- * Sendy REST Price Request
+ * Sendy Confirm Order Request
  *
  * ### Example
  *
@@ -68,11 +68,11 @@ class ConfirmOrderRequest extends SendyRestRequest
         return $this->data;
     }
 
-    /**
+     /**
      * Get HTTP Method.
      *
-     * The HTTP method for price request requests must be GET.
-     * Using POST results in an error 500 from PesaPal.
+     * The HTTP method for confirming order requests must be POST.
+     * Using GET results in an error 500 from Sendy.
      *
      * @return string
      */

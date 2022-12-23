@@ -1,6 +1,6 @@
 <?php
 /**
- * Sendy REST Price Request
+ * Sendy Fetch Order Details
  */
 
 namespace Ajowi\SendyFulfilment;
@@ -49,7 +49,7 @@ class FetchOrderRequest extends SendyRestRequest
      * Get HTTP Method.
      *
      * The HTTP method for price request requests must be GET.
-     * Using POST results in an error 500 from PesaPal.
+     * Using POST results in an error 500 from Sendy.
      *
      * @return string
      */

@@ -8,7 +8,7 @@ namespace Ajowi\SendyFulfilment;
 use Ajowi\SendyFulfilment\SendyRestRequest;
 
 /**
- * PesaPal REST Response
+ * Sendy REST Response
  */
 class RestResponse
 {
@@ -24,19 +24,27 @@ class RestResponse
      *
      * @var mixed
      */
-    protected $data;
+    protected $response;
+
+    /**
+     * Response status code
+     * @var integer
+     */
     protected $statusCode;
 
     public function __construct(SendyRestRequest $request, $data, $statusCode = 200)
     {
         $this->request = $request;
-        $this->data = $data;
+        $this->response = $data;
         $this->statusCode = $statusCode;
     }
 
-    public function isSuccessful(): bool
+    /**
+     * Checks the status of the response
+     */
+    private function isSuccessful(): bool
     {
-        return $this->data['status'] ?? false;
+        return $this->response['status'] ?? false;
     }
 
     /**
@@ -44,7 +52,7 @@ class RestResponse
      */
     public function getCost()
     {
-        if(isset($this->getData()['economy_price_tiers']['price_tiers'])){
+        if(array_key_exists('price_tiers', $this->getData())){
             $cost = 0;
             foreach($this->getData()['economy_price_tiers']['price_tiers'] as $tiers){
                 $cost += $tiers['cost'];
@@ -53,7 +61,9 @@ class RestResponse
             return $cost;
         }
 
-        return $this->getData()['cost'];
+        if(array_key_exists('cost', $this->getData())){
+            return $this->getData()['cost'];
+        }
     }
 
     /**
@@ -61,7 +71,7 @@ class RestResponse
      */
     public function getPricingUniqueIds()
     {
-        if(isset($this->getData()['economy_price_tiers']['price_tiers'])){
+        if(array_key_exists('price_tiers', $this->getData())){
             $pricingUuids = array();
             foreach($this->getData()['economy_price_tiers']['price_tiers'] as $tiers){
                 array_push($pricingUuids, $tiers['id']);
@@ -77,7 +87,7 @@ class RestResponse
      */
     public function getSendyOrderNumber()
     {
-        return $this->getData()['order_no'];
+        return $this->getData()['order_no'] ?? null;
     }
 
      /**
@@ -85,7 +95,7 @@ class RestResponse
      */
     public function getTrackingLink()
     {
-        return $this->getData()['tracking_link'];
+        return $this->getData()['tracking_link'] ?? null;
     }
 
      /**
@@ -93,7 +103,7 @@ class RestResponse
      */
     public function getTrackingId()
     {
-        return $this->getData()['id'];
+        return $this->getData()['id'] ?? null;
     }
 
      /**
@@ -101,7 +111,7 @@ class RestResponse
      */
     public function getRider()
     {
-        return $this->getData()['rider'];
+        return $this->getData()['rider'] ?? null;
     }
 
     /**
@@ -110,11 +120,11 @@ class RestResponse
 
     public function getData()
     {
-        if ($this->isSuccessful()) {
-            return $this->data['data'];
+        if ($this->isSuccessful() && array_key_exists('data', $this->response)) {
+            return $this->response['data'];
         }
 
-        return $this->data;
+        return array();
     }
 
     /**
@@ -122,19 +132,27 @@ class RestResponse
      */
     public function getMessage()
     {
-        if (isset($this->data['message'])) {
-            return $this->data['message'];
+        if (array_key_exists('message', $this->response)) {
+            return $this->response['message'];
         }
 
         return null;
     }
 
     /**
-     * Get Http Request status code
+     * Get Http Response status code
      */
     public function getCode()
     {
         return $this->statusCode;
+    }
+
+    /**
+     * Get Http Response status
+     */
+    public function getStatus()
+    {
+        return $this->response['status'];
     }
 
     /**
@@ -143,7 +161,7 @@ class RestResponse
     public function getEcommerceOrder()
     {
         if ($this->isSuccessful()) {
-            if (isset($this->getData()['ecommerce_order'])) {
+            if (array_key_exists('ecommerce_order', $this->getData())) {
                 return $this->getData()['ecommerce_order'];
             }
             elseif (isset($this->getData()['details']['ecommerce_order'])) {
