@@ -13,8 +13,8 @@ class ConfirmOrderRequestTest extends TestCase
         $merchantOrderNumber = "ORD-0000";
         $pricingUUID = "OdRsadd-0000";
         $status = true;
-        $order = self::getDefaultOrderRequest($pricingUUID);
-        $defaultResponse = self::getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status);
+        $order = $this->getDefaultOrderRequest($pricingUUID);
+        $defaultResponse = $this->getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status);
         $orderRequest = new ConfirmOrderRequest('https://api.sendyit.com/v2/orders', 'KEY');
         $orderRequest->setHttpClient($this->getClient());
         //$orderRequest->initialize($order);
@@ -31,8 +31,8 @@ class ConfirmOrderRequestTest extends TestCase
         $merchantOrderNumber = "ORD-0000";
         $pricingUUID = "OdRsadd-0000";
         $status = false;
-        $order = self::getDefaultOrderRequest($pricingUUID);
-        $defaultResponse = self::getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status);
+        $order = $this->getDefaultOrderRequest($pricingUUID);
+        $defaultResponse = $this->getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status);
         $orderRequest = new ConfirmOrderRequest('https://api.sendyit.com/v2/orders', 'KEY');
         $orderRequest->setHttpClient($this->getClient());
         //$orderRequest->initialize($order);
@@ -43,7 +43,7 @@ class ConfirmOrderRequestTest extends TestCase
 
     }
 
-    public static function getDefaultOrderRequest($pricingUUID){
+    private function getDefaultOrderRequest($pricingUUID){
         return  array(
                     'pricing_uuid' => $pricingUUID,
                     'payment_option' => 1,
@@ -72,7 +72,7 @@ class ConfirmOrderRequestTest extends TestCase
                );
     }
 
-    public static function getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status){
+    private function getDefaultOrderResponse($pricingUUID, $merchantOrderNumber, $status){
         return array(
             "status" => $status,
             "message" => "Order placed successfully",
