@@ -37,7 +37,7 @@ class TestCase extends PHPUnitTestCase
                 $this->anything(), $params)
              ->willReturn(
                 $this->createResponse($rcode)
-                    ->withBody($this->createStream(array(json_encode($return), $rcode)))
+                    ->withBody($this->createStream(json_encode($return), $rcode))
              );
 
     }
