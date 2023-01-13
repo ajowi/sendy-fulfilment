@@ -64,4 +64,12 @@ class RestResponseTest extends TestCase
         $response = new RestResponse($restRequest, $data);
         $this->assertEquals($response->getMessage(), $data['message']);
     }
+
+    public function testGetResponse(): void
+    {
+        $restRequest = new SendyRestRequest();
+        $restRequestTest = new SendyRestRequestTest();
+        $response = new RestResponse($restRequest, $restRequestTest->getDefaultResponseWithData());
+        $this->assertTrue(!empty($response->getResponse()));
+    }
 }

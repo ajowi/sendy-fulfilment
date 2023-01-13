@@ -169,4 +169,11 @@ class RestResponse
             }
         }
     }
+
+    /**
+     * Response data
+     */
+    public function getResponse(){
+        return $this->response;
+    }
 }

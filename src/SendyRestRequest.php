@@ -122,7 +122,7 @@ class SendyRestRequest
 
     private function sendData($data)
     {
-        $body = $data; //$this->toJSON($data);
+        $body = $this->toJSON($data);
         //Log::info($body);
         if($this->hasEndpoint() && $this->hasApiKey()){
             try {
@@ -139,7 +139,11 @@ class SendyRestRequest
                 // Empty response body should be parsed also as and empty array
                 $body = (string)$httpResponse->getBody()->getContents();
                 $jsonToArrayResponse = !empty($body) ? json_decode($body, true) : array();
-                return $this->response = $this->createResponse($jsonToArrayResponse, $httpResponse->getStatusCode());
+                $this->response = $this->createResponse($jsonToArrayResponse, $httpResponse->getStatusCode());
+                if($this->response->getCode() != 200){
+                    throw new RequestException($this->response->getMessage(), $this->response->getCode());
+                }
+                return $this->response;
             } catch (\Exception $e) {
                 throw new RequestException($e->getMessage(),$e->getCode());
             }
